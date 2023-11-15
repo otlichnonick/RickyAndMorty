@@ -27,6 +27,9 @@
 		3A6FF4EE2B03E04B006B6822 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FF4ED2B03E04B006B6822 /* APIManager.swift */; };
 		3A6FF4F02B03E0FF006B6822 /* APIPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FF4EF2B03E0FF006B6822 /* APIPresenter.swift */; };
 		3A6FF4F22B03E2A5006B6822 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FF4F12B03E2A5006B6822 /* CharacterModel.swift */; };
+		3A6FF4F62B041F4F006B6822 /* CharactersFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FF4F52B041F4F006B6822 /* CharactersFetcher.swift */; };
+		3A6FF4FB2B050057006B6822 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6FF4FA2B050057006B6822 /* CustomProgressView.swift */; };
+		3A6FF5002B0519FE006B6822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6FF4FF2B0519FE006B6822 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,10 @@
 		3A6FF4ED2B03E04B006B6822 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		3A6FF4EF2B03E0FF006B6822 /* APIPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPresenter.swift; sourceTree = "<group>"; };
 		3A6FF4F12B03E2A5006B6822 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		3A6FF4F52B041F4F006B6822 /* CharactersFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersFetcher.swift; sourceTree = "<group>"; };
+		3A6FF4FA2B050057006B6822 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		3A6FF4FE2B0510A1006B6822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3A6FF4FF2B0519FE006B6822 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +128,8 @@
 		3A6FF4A62B03DA51006B6822 /* RickyAndMortyTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				3A6FF4FE2B0510A1006B6822 /* Info.plist */,
+				3A6FF4F72B05002C006B6822 /* Views */,
 				3A6FF4D52B03DA7C006B6822 /* Utils */,
 				3A6FF4D42B03DA74006B6822 /* Services */,
 				3A6FF4D32B03DA67006B6822 /* Screens */,
@@ -130,6 +139,7 @@
 				3A6FF4AB2B03DA53006B6822 /* Assets.xcassets */,
 				3A6FF4AD2B03DA53006B6822 /* RickyAndMortyTestApp.entitlements */,
 				3A6FF4AE2B03DA53006B6822 /* Preview Content */,
+				3A6FF4FF2B0519FE006B6822 /* LaunchScreen.storyboard */,
 			);
 			path = RickyAndMortyTestApp;
 			sourceTree = "<group>";
@@ -215,13 +225,38 @@
 		3A6FF4E02B03DC75006B6822 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				3A6FF4F32B041F08006B6822 /* Shared */,
+				3A6FF4F42B041F26006B6822 /* Fetchers */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		3A6FF4F32B041F08006B6822 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3A6FF4EF2B03E0FF006B6822 /* APIPresenter.swift */,
+				3A6FF4ED2B03E04B006B6822 /* APIManager.swift */,
 				3A6FF4E12B03DCD1006B6822 /* Endpoint.swift */,
 				3A6FF4E72B03DDAD006B6822 /* NetworkError.swift */,
 				3A6FF4E92B03DEF6006B6822 /* NetworkLogger.swift */,
-				3A6FF4ED2B03E04B006B6822 /* APIManager.swift */,
-				3A6FF4EF2B03E0FF006B6822 /* APIPresenter.swift */,
 			);
-			path = NetworkService;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		3A6FF4F42B041F26006B6822 /* Fetchers */ = {
+			isa = PBXGroup;
+			children = (
+				3A6FF4F52B041F4F006B6822 /* CharactersFetcher.swift */,
+			);
+			path = Fetchers;
+			sourceTree = "<group>";
+		};
+		3A6FF4F72B05002C006B6822 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A6FF4FA2B050057006B6822 /* CustomProgressView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A6FF5002B0519FE006B6822 /* LaunchScreen.storyboard in Resources */,
 				3A6FF4B02B03DA53006B6822 /* Preview Assets.xcassets in Resources */,
 				3A6FF4AC2B03DA53006B6822 /* Assets.xcassets in Resources */,
 			);
@@ -357,9 +393,11 @@
 				3A6FF4E82B03DDAD006B6822 /* NetworkError.swift in Sources */,
 				3A6FF4E22B03DCD1006B6822 /* Endpoint.swift in Sources */,
 				3A6FF4DA2B03DABC006B6822 /* CharactersViewModel.swift in Sources */,
+				3A6FF4F62B041F4F006B6822 /* CharactersFetcher.swift in Sources */,
 				3A6FF4F02B03E0FF006B6822 /* APIPresenter.swift in Sources */,
 				3A6FF4AA2B03DA51006B6822 /* ContentView.swift in Sources */,
 				3A6FF4DD2B03DAE0006B6822 /* CharacterDetailScreen.swift in Sources */,
+				3A6FF4FB2B050057006B6822 /* CustomProgressView.swift in Sources */,
 				3A6FF4F22B03E2A5006B6822 /* CharacterModel.swift in Sources */,
 				3A6FF4DF2B03DAEF006B6822 /* CharacterDetailViewModel.swift in Sources */,
 				3A6FF4EC2B03DFA5006B6822 /* Foundation+Ext.swift in Sources */,
@@ -532,17 +570,19 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RickyAndMortyTestApp/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
@@ -570,17 +610,19 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RickyAndMortyTestApp/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.5;

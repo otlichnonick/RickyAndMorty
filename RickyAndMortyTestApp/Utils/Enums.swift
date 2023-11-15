@@ -14,3 +14,10 @@ enum HTTPMethod: String {
     case PUT
     case DELETE
 }
+
+enum LoadState {
+    case notRequest
+    case loading
+    case success
+    case error
+}

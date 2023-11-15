@@ -14,6 +14,14 @@ struct CharactersScreen: View {
             ScrollView(.vertical) {
                 charactersList
             }
+            
+            if viewModel.loadState == .loading {
+                CustomProgressView()
+            }
+        }
+        .background(Color("mainOrange"))
+        .onAppear {
+            viewModel.getAllCharacters()
         }
     }
 }
@@ -21,10 +29,10 @@ struct CharactersScreen: View {
 extension CharactersScreen {
     var charactersList: some View {
         LazyVStack {
-            ForEach(viewModel.charactersData?.results ?? []) { characterModel in
+            ForEach(viewModel.characters) { characterModel in
                     createView(for: characterModel)
                     .onAppear {
-                        if characterModel.id == viewModel.charactersData?.results.last?.id {
+                        if characterModel.id == viewModel.characters.last?.id {
                             viewModel.onBottomList()
                         }
                     }
@@ -46,6 +54,10 @@ extension CharactersScreen {
                 
             }
         }
+        .padding()
+        .background(Color("mainBeige"))
+        .cornerRadius(16)
+        .padding(.horizontal)
     }
 }
 
