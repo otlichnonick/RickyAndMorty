@@ -21,6 +21,8 @@ struct CustomProgressView: View {
     }
 }
 
-#Preview {
-    CustomProgressView()
+struct CustomProgressView_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomProgressView()
+    }
 }

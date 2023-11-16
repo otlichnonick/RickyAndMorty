@@ -11,8 +11,13 @@ struct CharactersScreen: View {
     @StateObject var viewModel = CharactersViewModel()
     var body: some View {
         ZStack {
-            ScrollView(.vertical) {
-                charactersList
+            VStack {
+                SearchView(searchText: $viewModel.searchedText)
+                    .padding(.horizontal)
+                
+                ScrollView(.vertical) {
+                    charactersList
+                }
             }
             
             if viewModel.loadState == .loading {
@@ -29,11 +34,11 @@ struct CharactersScreen: View {
 extension CharactersScreen {
     var charactersList: some View {
         LazyVStack {
-            ForEach(viewModel.characters) { characterModel in
+            ForEach(viewModel.filteredCharacters) { characterModel in
                     createView(for: characterModel)
                     .onAppear {
                         if characterModel.id == viewModel.characters.last?.id {
-                            viewModel.onBottomList()
+                            viewModel.getAllCharacters()
                         }
                     }
             }
@@ -56,11 +61,21 @@ extension CharactersScreen {
         }
         .padding()
         .background(Color("mainBeige"))
-        .cornerRadius(16)
+        .cornerRadius(Constants.cornerRadius)
         .padding(.horizontal)
     }
 }
 
-#Preview {
-    CharactersScreen()
+extension CharactersScreen {
+    func showSearchBar() {
+        withAnimation {
+            viewModel.searchFieldOpacity = 1
+        }
+    }
+}
+
+struct CharactersScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        CharactersScreen()
+    }
 }

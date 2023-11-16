@@ -13,6 +13,8 @@ struct CharacterDetailScreen: View {
     }
 }
 
-#Preview {
-    CharacterDetailScreen()
+struct CharacterDetailScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        CharacterDetailScreen()
+    }
 }
