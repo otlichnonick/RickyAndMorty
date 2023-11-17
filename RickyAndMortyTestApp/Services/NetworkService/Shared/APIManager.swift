@@ -19,7 +19,7 @@ extension APIManager {
               return URLSession.shared.dataTaskPublisher(for: request)
                   .tryMap { result -> Output in
                       let httpResponse = result.response as? HTTPURLResponse
-//                      NetworkLogger.log(response: httpResponse, data: result.data)
+                      NetworkLogger.log(response: httpResponse, data: result.data)
                       
                       if httpResponse?.statusCode == 204 {
                           throw NetworkError.noContent
@@ -41,7 +41,7 @@ extension APIManager {
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { result -> Output in
                     let httpResponse = result.response as? HTTPURLResponse
-//                    NetworkLogger.log(response: httpResponse, data: result.data)
+                    NetworkLogger.log(response: httpResponse, data: result.data)
                     
                     if httpResponse?.statusCode == 204 {
                         throw NetworkError.noContent

@@ -10,23 +10,25 @@ import SwiftUI
 struct CharactersScreen: View {
     @StateObject var viewModel = CharactersViewModel()
     var body: some View {
-        ZStack {
-            VStack {
-                SearchView(searchText: $viewModel.searchedText)
-                    .padding(.horizontal)
+        NavigationStack {
+            ZStack {
+                VStack {
+                    SearchView(searchText: $viewModel.searchedText)
+                        .padding(.horizontal)
+                    
+                    ScrollView(.vertical) {
+                        charactersList
+                    }
+                }
                 
-                ScrollView(.vertical) {
-                    charactersList
+                if viewModel.loadState == .loading {
+                    CustomProgressView()
                 }
             }
-            
-            if viewModel.loadState == .loading {
-                CustomProgressView()
+            .background(Constants.mainOrangeColor)
+            .onAppear {
+                viewModel.getAllCharacters()
             }
-        }
-        .background(Color("mainOrange"))
-        .onAppear {
-            viewModel.getAllCharacters()
         }
     }
 }
@@ -34,13 +36,17 @@ struct CharactersScreen: View {
 extension CharactersScreen {
     var charactersList: some View {
         LazyVStack {
-            ForEach(viewModel.filteredCharacters) { characterModel in
-                    createView(for: characterModel)
-                    .onAppear {
-                        if characterModel.id == viewModel.characters.last?.id {
-                            viewModel.getAllCharacters()
+            ForEach(viewModel.filteredCharacters) { character in
+                NavigationLink {
+                    CharacterDetailScreen(selectedCharacter: character)
+                } label: {
+                    createView(for: character)
+                        .onAppear {
+                            if character.id == viewModel.characters.last?.id {
+                                viewModel.getAllCharacters()
+                            }
                         }
-                    }
+                }
             }
         }
     }
@@ -60,7 +66,7 @@ extension CharactersScreen {
             }
         }
         .padding()
-        .background(Color("mainBeige"))
+        .background(Constants.mainBeigeColor)
         .cornerRadius(Constants.cornerRadius)
         .padding(.horizontal)
     }

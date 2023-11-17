@@ -6,15 +6,33 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CharacterDetailScreen: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @StateObject private var viewModel = CharacterDetailViewModel()
+    let character: CharacterModel
+    
+    init(selectedCharacter: CharacterModel) {
+        self.character = selectedCharacter
     }
-}
-
-struct CharacterDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        CharacterDetailScreen()
+    
+    var body: some View {
+        VStack {
+            WebImage(url: URL(string: character.image), options: [SDWebImageOptions.decodeFirstFrameOnly])
+                .cancelOnDisappear(true)
+                .resizable()
+                .placeholder {
+                    Image(systemName: Constants.imagePlaceholder)
+                        .renderingMode(.template)
+                        .foregroundColor(.gray)
+                }
+                .indicator(.activity)
+                .transition(.fade(duration: Constants.transitionDuration))
+                .aspectRatio(contentMode: .fit)
+            
+            Text(character.name)
+                .foregroundColor(Constants.mainBlackColor)
+        }
+        .padding(.horizontal)
     }
 }

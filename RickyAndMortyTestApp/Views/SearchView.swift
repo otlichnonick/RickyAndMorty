@@ -12,23 +12,23 @@ struct SearchView: View {
     
     var body: some View {
         ZStack(alignment: .trailing) {
-            TextField("Search", text: $searchText)
+            TextField(Constants.searchPlaceholder, text: $searchText)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 8)
-                .background(Color("mainBeige"))
+                .background(Constants.mainBeigeColor)
                 .cornerRadius(8)
             
             Button(action: {
-                self.searchText = ""
+                self.searchText = .init()
             }) {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(Color("mainRed"))
+                Image(systemName: Constants.xmarkCircleFill)
+                    .foregroundColor(Constants.mainRedColor)
                     .opacity(searchText.isEmpty ? 0 : 1)
                     .padding(.trailing, 8)
             }
         }
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        .background(Color("mainRed"))
+        .background(Constants.mainRedColor)
         .cornerRadius(10)
         .shadow(radius: 2)
     }
