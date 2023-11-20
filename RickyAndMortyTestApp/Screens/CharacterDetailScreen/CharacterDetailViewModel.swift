@@ -36,10 +36,16 @@ extension CharacterDetailViewModel {
         }
     }
     
-    private func getEpisodes(from episodesUrls: [String]) -> [Int] {
-         return episodesUrls.compactMap { urlString -> Int? in
-             guard let lastComponent = urlString.components(separatedBy: "/").last else { return nil }
-             return Int(lastComponent)
+    private func getEpisodes(from episodesUrls: [String]) -> String {
+        let episodeNumbers = episodesUrls.compactMap { url -> Int? in
+            guard let lastComponent = url.components(separatedBy: "/").last else { return nil }
+            return Int(lastComponent)
         }
+        
+        // To avoid creating a separate method to get a single episode
+        // with another response model I decided to add ", at the end of the path
+        // So I can use a similar response model in both cases
+        let string = episodeNumbers.map(String.init).joined(separator: ",") + ","
+        return string
     }
 }

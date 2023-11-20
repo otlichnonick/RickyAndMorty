@@ -11,22 +11,22 @@ struct EpisodesFetcher: APIManager {
     var baseURL: String = Constants.baseUrl
     private var presenter = APIPresenter()
     
-    func getMultipleEpisodes(_ episodes: [Int], handler: @escaping (Result<EpisodesModel, Error>) -> Void) {
+    func getMultipleEpisodes(_ episodes: String, handler: @escaping (Result<EpisodesModel, Error>) -> Void) {
         presenter.baseRequest(publisher: fetch(endpoint: Endpoints.getMultipleEpisodes(episodes)), handler: handler)
     }
 }
 
 extension EpisodesFetcher {
     enum Endpoints {
-        case getMultipleEpisodes([Int])
+        case getMultipleEpisodes(String)
     }
 }
 
 extension EpisodesFetcher.Endpoints: Endpoint {
     var path: String {
         switch self {
-        case .getMultipleEpisodes(let array):
-            return "episode/\(array)"
+        case .getMultipleEpisodes(let episodes):
+            return "episode/\(episodes)"
         }
     }
     
