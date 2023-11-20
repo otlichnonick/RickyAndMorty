@@ -9,15 +9,38 @@ import SwiftUI
 
 struct CharactersScreen: View {
     @StateObject var viewModel = CharactersViewModel()
+    @EnvironmentObject var networkMonitor: NetworkMonitor
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 VStack {
-                    SearchView(searchText: $viewModel.searchedText)
-                        .padding(.horizontal)
-                    
                     ScrollView(.vertical) {
                         charactersList
+                    }
+                    
+                    Button(action: {
+                        viewModel.showSearchAlert = true
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            
+                            Text(Constants.searchButtonTitle)
+                                .foregroundColor(Constants.mainBlackColor)
+                                .padding(.vertical)
+                            
+                            Spacer()
+                        }
+                            .background(Constants.mainRedColor)
+                            .cornerRadius(Constants.cornerRadius)
+                    })
+                        .padding(.horizontal)
+                }
+                
+                if !networkMonitor.isInternetAvailable {
+                    VStack {
+                        NetworkConnectionErrorView()
+                        Spacer()
                     }
                 }
                 
@@ -27,8 +50,32 @@ struct CharactersScreen: View {
             }
             .background(Constants.mainOrangeColor)
             .onAppear {
-                viewModel.getAllCharacters()
+                if networkMonitor.isInternetAvailable {
+                    viewModel.getCharacters()
+                }
             }
+            .onReceive(networkMonitor.$isInternetAvailable) { isAvailable in
+                if isAvailable {
+                    viewModel.getCharacters()
+                }
+            }
+            .alert("Enter values for search", isPresented: $viewModel.showSearchAlert, actions: {
+                VStack(spacing: 24) {
+                    TextField(Constants.searchWithName, text: $viewModel.searchedName)
+                    
+                    TextField(Constants.searchWithStatus, text: $viewModel.searchedStatus)
+                    
+                    Button("OK", action: {
+                        viewModel.clearCharacters()
+                        viewModel.getCharacters()
+                        viewModel.showSearchAlert = false
+                    })
+                    
+                    Button("CANCEL") {
+                        viewModel.showSearchAlert = false
+                    }
+                }
+            })
         }
     }
 }
@@ -36,46 +83,18 @@ struct CharactersScreen: View {
 extension CharactersScreen {
     var charactersList: some View {
         LazyVStack {
-            ForEach(viewModel.filteredCharacters) { character in
+            ForEach(viewModel.characters) { character in
                 NavigationLink {
-                    CharacterDetailScreen(selectedCharacter: character)
+                    LazyView(CharacterDetailScreen(selectedCharacter: character))
                 } label: {
-                    createView(for: character)
+                    CharacterCellView(character: character)
                         .onAppear {
                             if character.id == viewModel.characters.last?.id {
-                                viewModel.getAllCharacters()
+                                viewModel.getCharacters()
                             }
                         }
                 }
             }
-        }
-    }
-}
-
-extension CharactersScreen {
-    @ViewBuilder
-    private func createView(for character: CharacterModel) -> some View {
-        VStack {
-            HStack {
-                Text(character.name)
-                Spacer()
-                Text(character.status)
-            }
-            HStack {
-                
-            }
-        }
-        .padding()
-        .background(Constants.mainBeigeColor)
-        .cornerRadius(Constants.cornerRadius)
-        .padding(.horizontal)
-    }
-}
-
-extension CharactersScreen {
-    func showSearchBar() {
-        withAnimation {
-            viewModel.searchFieldOpacity = 1
         }
     }
 }

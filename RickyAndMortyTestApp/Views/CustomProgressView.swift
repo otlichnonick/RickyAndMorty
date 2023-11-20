@@ -13,8 +13,7 @@ struct CustomProgressView: View {
             Spacer()
 
             ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                .padding()
+                .progressViewStyle(CircularProgressViewStyle(tint: Constants.mainRedColor))
 
             Spacer()
         }

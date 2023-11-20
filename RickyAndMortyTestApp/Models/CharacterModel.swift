@@ -26,7 +26,6 @@ struct CharacterModel: Codable, Identifiable {
     let species: String
     let type: String
     let gender: String
-    let image: String //"https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-    let url: String //"https://rickandmortyapi.com/api/character/1",
-    let created: String //"2017-11-04T18:48:46.250Z"
+    let image: String 
+    let episode: [String]
 }

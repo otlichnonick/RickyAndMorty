@@ -11,6 +11,7 @@ enum NetworkError: Error, LocalizedError {
     case notValidURL
     case notValidBody
     case noContent
+    case badResponse
     
     var errorDescription: String? {
         switch self {
@@ -20,6 +21,8 @@ enum NetworkError: Error, LocalizedError {
             return  "There is not valid body"
         case .noContent:
             return "There is no content"
+        case .badResponse:
+            return "There is no success with server response"
         }
     }
     

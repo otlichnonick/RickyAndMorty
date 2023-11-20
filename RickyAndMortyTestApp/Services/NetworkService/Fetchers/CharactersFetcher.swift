@@ -8,7 +8,7 @@
 import Foundation
 
 struct CharactersFetcher: APIManager {
-    var baseURL: String = "https://rickandmortyapi.com/api/"
+    var baseURL: String = Constants.baseUrl
     private let presenter: APIPresenter = .init()
         
     func getAllNews(queryParams: [String: String], handler: @escaping (Result<CharactersModel, Error>) -> Void) {

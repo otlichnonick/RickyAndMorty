@@ -8,34 +8,26 @@
 import SwiftUI
 
 struct SearchView: View {
-    @Binding var searchText: String
+    @Binding var nameSearchText: String
+    @Binding var statusSearchText: String
     
     var body: some View {
-        ZStack(alignment: .trailing) {
-            TextField(Constants.searchPlaceholder, text: $searchText)
+        VStack(spacing: 24) {
+            TextField(Constants.searchWithName, text: $nameSearchText)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 8)
                 .background(Constants.mainBeigeColor)
                 .cornerRadius(8)
             
-            Button(action: {
-                self.searchText = .init()
-            }) {
-                Image(systemName: Constants.xmarkCircleFill)
-                    .foregroundColor(Constants.mainRedColor)
-                    .opacity(searchText.isEmpty ? 0 : 1)
-                    .padding(.trailing, 8)
-            }
+            TextField(Constants.searchWithStatus, text: $statusSearchText)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 8)
+                .background(Constants.mainBeigeColor)
+                .cornerRadius(8)
         }
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
         .background(Constants.mainRedColor)
         .cornerRadius(10)
         .shadow(radius: 2)
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView(searchText: .constant("Some text"))
     }
 }
